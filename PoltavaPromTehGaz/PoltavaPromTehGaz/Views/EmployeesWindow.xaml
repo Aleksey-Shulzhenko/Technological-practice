@@ -1,0 +1,46 @@
+﻿<Window x:Class="PoltavaPromTehGaz.Views.EmployeesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Управління працівниками" 
+        Height="600" Width="900"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ПАНЕЛЬ ИНСТРУМЕНТОВ -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="➕ Додати" Width="100" Height="30" Margin="0,0,5,0"/>
+            <Button Content="✏️ Редагувати" Width="100" Height="30" Margin="5,0"/>
+            <Button Content="🗑️ Видалити" Width="100" Height="30" Margin="5,0"/>
+            <Separator Width="20" Visibility="Hidden"/>
+            <TextBox Width="200" Height="30" Margin="5,0" 
+                     VerticalContentAlignment="Center"
+                     Text="Пошук..."/>
+        </StackPanel>
+
+        <!-- ТАБЛИЦА ПРАЦОВНИКОВ -->
+        <DataGrid Grid.Row="1" x:Name="EmployeesGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="ПІБ" Width="200" Binding="{Binding FullName}"/>
+                <DataGridTextColumn Header="Посада" Width="150" Binding="{Binding Position}"/>
+                <DataGridTextColumn Header="Дата прийому" Width="100" 
+                                    Binding="{Binding HireDate, StringFormat=dd.MM.yyyy}"/>
+                <DataGridTextColumn Header="Зарплата" Width="100" 
+                                    Binding="{Binding Salary, StringFormat={}{0:N2} грн}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!-- СТАТУС -->
+        <StatusBar Grid.Row="2" Margin="0,10,0,0">
+            <StatusBarItem>
+                <TextBlock x:Name="StatusText" Text="Завантаження..."/>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

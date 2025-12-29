@@ -1,0 +1,95 @@
+﻿<Window x:Class="PoltavaPromTehGaz.CylindersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="📦 Управління газовими балонами" 
+        Height="700" Width="1100"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button x:Name="btnAddCylinder" Content="➕ Додати балон" Width="140" Height="35" 
+                    Margin="0,0,5,0" Click="BtnAddCylinder_Click" Background="#27AE60" 
+                    Foreground="White" FontWeight="Bold"/>
+            <Button x:Name="btnEditCylinder" Content="✏️ Редагувати" Width="120" Height="35" 
+                    Margin="5,0" Click="BtnEditCylinder_Click" Background="#3498DB" 
+                    Foreground="White" FontWeight="Bold"/>
+            <Button x:Name="btnDeleteCylinder" Content="🗑️ Видалити" Width="120" Height="35" 
+                    Margin="5,0" Click="BtnDeleteCylinder_Click" Background="#E74C3C" 
+                    Foreground="White" FontWeight="Bold"/>
+            <Separator Width="30" Visibility="Hidden"/>
+            <TextBox x:Name="txtSearch" Width="250" Height="35" Margin="5,0" 
+                     VerticalContentAlignment="Center" TextChanged="TxtSearch_TextChanged"
+                     FontSize="14" Padding="5">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Foreground" Value="Gray"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Text" Value=""/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+                Пошук за номером, типом газу...
+            </TextBox>
+            <Button Content="🔍 Пошук" Width="100" Height="35" Margin="5,0" 
+                    Click="BtnSearch_Click" Background="#9B59B6" 
+                    Foreground="White" FontWeight="Bold"/>
+            <Button Content="🔄 Оновити" Width="100" Height="35" Margin="5,0" 
+                    Click="BtnRefresh_Click" Background="#95A5A6" 
+                    Foreground="White" FontWeight="Bold"/>
+        </StackPanel>
+
+        <ListView Grid.Row="1" x:Name="CylindersList" 
+                  SelectionChanged="CylindersList_SelectionChanged"
+                  MouseDoubleClick="CylindersList_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Серійний номер" Width="120" DisplayMemberBinding="{Binding SerialNumber}"/>
+                    <GridViewColumn Header="Тип газу" Width="120" DisplayMemberBinding="{Binding GasType}"/>
+                    <GridViewColumn Header="Статус" Width="100" DisplayMemberBinding="{Binding Status}"/>
+                    <GridViewColumn Header="Розташування" Width="100" DisplayMemberBinding="{Binding Location}"/>
+                    <GridViewColumn Header="Дата виготовлення" Width="110" 
+                                    DisplayMemberBinding="{Binding ManufactureDate, StringFormat=dd.MM.yyyy}"/>
+                    <GridViewColumn Header="Остання перевірка" Width="110" 
+                                    DisplayMemberBinding="{Binding LastCheckDate, StringFormat=dd.MM.yyyy}"/>
+                    <GridViewColumn Header="Наступна перевірка" Width="120" 
+                                    DisplayMemberBinding="{Binding NextCheckDate, StringFormat=dd.MM.yyyy}"/>
+                    <GridViewColumn Header="Вартість" Width="90" 
+                                    DisplayMemberBinding="{Binding CurrentValue, StringFormat={}{0:N2} грн}"/>
+                    <GridViewColumn Header="Примітки" Width="150" DisplayMemberBinding="{Binding Notes}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Border Grid.Row="2" Background="#F8F9FA" Padding="10" Margin="0,10,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock x:Name="StatusText" VerticalAlignment="Center" 
+                               FontWeight="Bold" Foreground="#2C3E50">Завантаження...</TextBlock>
+                    <TextBlock x:Name="SelectedCountText" VerticalAlignment="Center" 
+                               Margin="20,0,0,0" Foreground="#7F8C8D">Вибрано: 0</TextBlock>
+                    <TextBlock x:Name="txtTotalValue" VerticalAlignment="Center" 
+                               Margin="20,0,0,0" Foreground="#27AE60" FontWeight="Bold">
+                        Загальна вартість: 0.00 грн
+                    </TextBlock>
+                </StackPanel>
+                <Button Grid.Column="1" Content="✕ Закрити" Width="120" Height="35" 
+                        Click="CloseButton_Click" Background="#95A5A6" 
+                        Foreground="White" FontWeight="Bold"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,132 @@
+﻿<Window x:Class="PoltavaPromTehGaz.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Система обліку газових балонів"
+        Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen"
+        Background="#f5f5f5">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<Border Grid.Row="0" Background="#2C3E50" Padding="20">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+
+				<StackPanel Grid.Column="0" Orientation="Horizontal">
+					<TextBlock Text="🏭" FontSize="28" VerticalAlignment="Center"/>
+					<TextBlock Text=" ПОЛТАВАПРОМТЕХГАЗ"
+                               FontSize="22" FontWeight="Bold"
+                               Foreground="White" VerticalAlignment="Center"
+                               Margin="10,0,0,0"/>
+				</StackPanel>
+
+				<TextBlock Grid.Column="1" Text="Система обліку газових балонів та зарплат"
+                           Foreground="#BDC3C7" FontSize="16"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+				<TextBlock Grid.Column="2" Text="👤 Адміністратор"
+                           Foreground="White" VerticalAlignment="Center"/>
+			</Grid>
+		</Border>
+
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="200"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+
+			<Border Grid.Column="0" Background="#34495E" Padding="10">
+				<StackPanel>
+					<Button x:Name="btnCylinders" Content="📦 Балони"
+                            Height="40" Margin="0,5" Background="#1ABC9C"
+                            Foreground="White" FontSize="14" FontWeight="Bold"
+                            Click="BtnCylinders_Click"/>
+					<Button x:Name="btnEmployees" Content="👥 Працівники"
+                            Height="40" Margin="0,5" Background="#3498DB"
+                            Foreground="White" FontSize="14" FontWeight="Bold"
+                            Click="BtnEmployees_Click"/>
+					<Button x:Name="btnSalary" Content="💰 Заробітна плата"
+                            Height="40" Margin="0,5" Background="#9B59B6"
+                            Foreground="White" FontSize="14" FontWeight="Bold"
+                            Click="BtnSalary_Click"/>
+					<Button x:Name="btnReports" Content="📊 Звіт"
+                            Height="40" Margin="0,5" Background="#E74C3C"
+                            Foreground="White" FontSize="14" FontWeight="Bold"
+                            Click="BtnReports_Click"/>
+					<Separator Margin="0,20" Background="#7F8C8D"/>
+					<Button x:Name="btnSettings" Content="⚙️ Налаштування системи"
+                            Height="35" Margin="0,5" Background="#95A5A6"
+                            Foreground="White" FontSize="12"
+                            Click="BtnSettings_Click"/>
+					<Button x:Name="btnExit" Content="🚪 Вихід з програми"
+                            Height="35" Margin="0,5" Background="#7F8C8D"
+                            Foreground="White" FontSize="12"
+                            Click="BtnExit_Click"/>
+				</StackPanel>
+			</Border>
+
+			<Border Grid.Column="1" Padding="20">
+				<Grid x:Name="MainContentArea">
+					<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+						<TextBlock Text="🏭" FontSize="72" HorizontalAlignment="Center"/>
+						<TextBlock Text="Ласкаво просимо!"
+                                   FontSize="28" FontWeight="Bold"
+                                   Margin="0,20,0,10" HorizontalAlignment="Center"/>
+						<TextBlock Text="Система автоматизації обліку газових балонів"
+                                   FontSize="16" Foreground="#7F8C8D"
+                                   HorizontalAlignment="Center"/>
+						<TextBlock Text="та розрахунку заробітної плати працівників"
+                                   FontSize="16" Foreground="#7F8C8D"
+                                   HorizontalAlignment="Center" Margin="0,0,0,30"/>
+
+						<WrapPanel HorizontalAlignment="Center">
+							<Border Background="#ECF0F1" Padding="15" Margin="10"
+                                    CornerRadius="10" Width="200">
+								<StackPanel>
+									<TextBlock Text="📊 Статистика" FontWeight="Bold"
+                                               HorizontalAlignment="Center"/>
+									<TextBlock x:Name="txtCylinderCount" Text="Балонів: 0" Margin="0,10,0,5"/>
+									<TextBlock x:Name="txtEmployeeCount" Text="Працівників: 0"/>
+									<TextBlock x:Name="txtTotalValue" Text="Загальна вартість: 0 грн"
+                                               Margin="0,5,0,0" FontWeight="SemiBold" Foreground="#27AE60"/>
+								</StackPanel>
+							</Border>
+
+							<Border Background="#ECF0F1" Padding="15" Margin="10"
+                                    CornerRadius="10" Width="200">
+								<StackPanel>
+									<TextBlock Text="⚡ Швидкі дії" FontWeight="Bold"
+                                               HorizontalAlignment="Center"/>
+									<Button Content="Додати балон" Margin="0,10,0,5"
+                                            Background="#2ECC71" Foreground="White"
+                                            Click="BtnQuickAddCylinder_Click"/>
+									<Button Content="Розрахувати зарплату"
+                                            Background="#3498DB" Foreground="White"
+                                            Click="BtnQuickSalary_Click"/>
+									<!-- ДОДАНО КНОПКУ -->
+									<Button Content="📋 Переглянути зарплати" Margin="0,5,0,0"
+                                            Background="#9B59B6" Foreground="White"
+                                            Click="BtnViewSalaries_Click"/>
+								</StackPanel>
+							</Border>
+						</WrapPanel>
+					</StackPanel>
+				</Grid>
+			</Border>
+		</Grid>
+
+		<Border Grid.Row="2" Background="#ECF0F1" Padding="10">
+            <TextBlock
+                       HorizontalAlignment="Center" Foreground="#7F8C8D"><Run Text="© 202"/><Run Language="uk-ua" Text="5"/><Run Text=" ПОЛТАВАПРОМТЕХГАЗ. Версія 1.0"/></TextBlock>
+        </Border>
+	</Grid>
+</Window>
